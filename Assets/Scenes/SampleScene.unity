@@ -459,11 +459,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1850839068379666849, guid: 8cb4bc81c98919b4aac1a0bf89063828, type: 3}
       propertyPath: m_Name
-      value: Hero (Crown)
+      value: Hero2
       objectReference: {fileID: 0}
     - target: {fileID: 1850839068379666849, guid: 8cb4bc81c98919b4aac1a0bf89063828, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Captain
       objectReference: {fileID: 0}
     - target: {fileID: 1850839068379666850, guid: 8cb4bc81c98919b4aac1a0bf89063828, type: 3}
       propertyPath: m_Constraints
@@ -537,7 +537,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1850839068379666849, guid: 8cb4bc81c98919b4aac1a0bf89063828, type: 3}
       propertyPath: m_Name
-      value: Hero
+      value: Hero1
       objectReference: {fileID: 0}
     - target: {fileID: 1850839068379666849, guid: 8cb4bc81c98919b4aac1a0bf89063828, type: 3}
       propertyPath: m_TagString

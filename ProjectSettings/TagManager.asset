@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - BoostRune
+  - Captain
   layers:
   - Default
   - TransparentFX

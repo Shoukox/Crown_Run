@@ -5,8 +5,9 @@ public class Hero : MonoBehaviour
 {
     public float _defaultSpeed = 0.2f;
     public float Speed = 0.2f;
-    public Transform prefab;
-
+    public bool crown = true;
+    public int crownDelay = 1000;
+  
     private bool _isGrounded = false;
 
     private void FixedUpdate()
@@ -14,10 +15,28 @@ public class Hero : MonoBehaviour
         Movement();
         Inst();
     }
+
+    void UpdateCrown(int delay, bool value)
+    {
+        Timer timer = new Timer(delay);
+        timer.Elapsed += (s, e) => crown = value;
+        timer.Start();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         IsGroundedUpdate(collision, true);
+        if (collision.gameObject.tag == "Player" && gameObject.tag == "Captain" && crown)
+        {
+            crown = false;
+            UpdateCrown(crownDelay, true);
+            collision.gameObject.tag = "Captain";
+            gameObject.tag = "Player";
+            var krone = transform.Find("crown");
+            krone.SetParent(collision.transform);
+        }
     }
+
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -44,16 +63,8 @@ public class Hero : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.K))
         {
-            Instantiate(prefab, new Vector3(10f, 10f, 0f), Quaternion.identity);
+            Instantiate(transform, new Vector3(10f, 10f, 0f), Quaternion.identity);
         }
-    }
-
-    void Boost(float addSpeed, int delay)
-    {
-        Speed *= 1.5f;
-        Timer timer = new Timer(delay);
-        timer.Elapsed += (s, e) => Speed = _defaultSpeed;
-        timer.Start();
     }
 
 }

@@ -24,7 +24,7 @@ public class Crown : MonoBehaviour
         _timer = new Timer(crownDelay);
         _timer.Elapsed += (s, e) =>
         {
-            if (count == current) crown = value; else crown = !value;
+            if (count == current) crown = value;
         };
         _timer.Start();
         return 0;

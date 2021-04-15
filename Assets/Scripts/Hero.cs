@@ -5,8 +5,6 @@ public class Hero : MonoBehaviour
 {
     public float _defaultSpeed = 0.2f;
     public float Speed = 0.2f;
-    public bool crown = true;
-    public int crownDelay = 1000;
   
     private bool _isGrounded = false;
 
@@ -16,23 +14,25 @@ public class Hero : MonoBehaviour
         Inst();
     }
 
-    void UpdateCrown(int delay, bool value)
-    {
-        Timer timer = new Timer(delay);
-        timer.Elapsed += (s, e) => crown = value;
-        timer.Start();
-    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         IsGroundedUpdate(collision, true);
-        if (collision.gameObject.tag == "Player" && gameObject.tag == "Captain" && crown)
+        if (collision.gameObject.tag == "Player" && gameObject.tag == "Captain")
         {
-            crown = false;
-            UpdateCrown(crownDelay, true);
+            var krone = transform.Find("crown");
+            if(krone.GetComponent<Crown>().UpdateCrown(true) == -1) return;
             collision.gameObject.tag = "Captain";
             gameObject.tag = "Player";
-            var krone = transform.Find("crown");
             krone.SetParent(collision.transform);
+        }
+        else if (collision.gameObject.tag == "Captain" && gameObject.tag == "Player")
+        {
+            var krone = collision.transform.Find("crown");
+            if (krone.GetComponent<Crown>().UpdateCrown(true) == -1) return;
+            collision.gameObject.tag = "Player";
+            gameObject.tag = "Captain";
+            krone.SetParent(transform);
         }
     }
 

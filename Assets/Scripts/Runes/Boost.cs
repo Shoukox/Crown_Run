@@ -8,10 +8,11 @@ public class Boost : MonoBehaviour
     // Start is called before the first frame update
     public bool isWorking = true;
     public int delay = 5000;
+    public List<string> allowed = new List<string>() { "Player", "Captain" }; 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player" && isWorking)
+        if(allowed.Contains(collision.gameObject.tag) && isWorking)
         {
             isWorking = false;
             var hero = collision.gameObject.GetComponent<Hero>();

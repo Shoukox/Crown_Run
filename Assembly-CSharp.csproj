@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Hero.cs" />
     <Compile Include="Assets\Scripts\Runes\Boost.cs" />
     <Compile Include="Assets\Scripts\Crown.cs" />
+    <Compile Include="Assets\Scripts\StaminaBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

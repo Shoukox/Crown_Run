@@ -6,21 +6,46 @@ using System.Timers;
 public class Boost : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool isWorking = true;
+
+    public static int boostrunesCount = 1;
     public int delay = 5000;
-    public List<string> allowed = new List<string>() { "Player", "Captain" }; 
+    public List<string> allowed = new List<string>() { "Player", "Captain" };
+
+    private void Start()
+    {
+        print($"{Map.leftCorner.x} {Map.rightCorner.x} {Map.leftCorner.y} {Map.rightCorner.y}");
+        for (int i = boostrunesCount; i<10; i++)
+        {
+            SpawnRune();
+        }
+    }
+
+    public void SpawnRune()
+    {
+        if (boostrunesCount < 10)
+        {
+            float rnd1 = Random.Range(Map.leftCorner.x, Map.rightCorner.x);
+            float rnd2 = Random.Range(Map.rightCorner.y, Map.leftCorner.y);
+            print($"{rnd1} {rnd2}");
+            Instantiate(transform, new Vector2(rnd1, rnd2), Quaternion.identity);
+            boostrunesCount += 1;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(allowed.Contains(collision.gameObject.tag) && isWorking)
+        if(allowed.Contains(collision.gameObject.tag))
         {
-            isWorking = false;
             var hero = collision.gameObject.GetComponent<Hero>();
-            hero.Speed *= 1.5f;
+            hero.boostUsed += 1;
+            int current = hero.boostUsed;
+            hero.Speed = hero._defaultSpeed * 1.5f;
             Timer timer = new Timer(delay);
-            timer.Elapsed += (s, e) => hero.Speed = hero._defaultSpeed;
+            timer.Elapsed += (s, e) => { if (hero.boostUsed == current) hero.Speed = hero._defaultSpeed; };
             timer.Start();
+            SpawnRune();
             Destroy(gameObject);
+            boostrunesCount -= 1;
         }
     }
 }

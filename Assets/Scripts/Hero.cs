@@ -7,10 +7,10 @@ public class Hero : MonoBehaviour
     public float _defaultSpeed = 0.2f;
     public float Speed = 0.2f;
     public float DashBar = 1f;
+    public int boostUsed = 0;
 
     private bool _isGrounded = false;
     private SpriteRenderer _sr;
-
 
     private void Start()
     {
@@ -68,7 +68,6 @@ public class Hero : MonoBehaviour
         _sr.flipX = true ? ox < 0 : false;
         Vector2 forcingTo = new Vector2(ox, oy);
         transform.Translate(forcingTo * Speed);
-        if (ox != 0f && oy != 0f) print($"{ox} {oy} {Speed}");
         //_rb.AddForce(forcingTo * Speed);
     }
 

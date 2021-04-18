@@ -116,13 +116,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4389747430966032478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52b4f3a16f73ed44480304aea38dcc78, type: 3}
+  m_Script: {fileID: 11500000, guid: df77fa256c0dd4d449b77df8bedb7ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NickName: PaFisU
   _defaultSpeed: 0.2
   Speed: 0.2
   DashBar: 1
+  boostUsed: 0
 --- !u!60 &-8578036133980492691
 PolygonCollider2D:
   m_ObjectHideFlags: 0

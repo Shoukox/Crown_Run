@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: "Assets/Scenes/Haubptmen\xFC.unity"
     guid: 1f030ac685d3c084489e3bb69eb14ced
   - enabled: 1
+    path: Assets/Scenes/LobbyManager.unity
+    guid: 33f9553d28c98ed4da59d4431cb7cb39
+  - enabled: 1
     path: Assets/Scenes/TestMap.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

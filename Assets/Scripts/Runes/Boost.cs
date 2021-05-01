@@ -13,7 +13,6 @@ public class Boost : MonoBehaviour
 
     private void Start()
     {
-        print($"{Map.leftCorner.x} {Map.rightCorner.x} {Map.leftCorner.y} {Map.rightCorner.y}");
         for (int i = boostrunesCount; i<10; i++)
         {
             SpawnRune();
@@ -26,7 +25,6 @@ public class Boost : MonoBehaviour
         {
             float rnd1 = Random.Range(Map.leftCorner.x, Map.rightCorner.x);
             float rnd2 = Random.Range(Map.rightCorner.y, Map.leftCorner.y);
-            print($"{rnd1} {rnd2}");
             Instantiate(transform, new Vector2(rnd1, rnd2), Quaternion.identity);
             boostrunesCount += 1;
         }
@@ -36,7 +34,7 @@ public class Boost : MonoBehaviour
     {
         if(allowed.Contains(collision.gameObject.tag))
         {
-            var hero = collision.gameObject.GetComponent<Hero>();
+            var hero = collision.gameObject.GetComponent<PlayerController>();
             hero.boostUsed += 1;
             int current = hero.boostUsed;
             hero.Speed = hero._defaultSpeed * 1.5f;
